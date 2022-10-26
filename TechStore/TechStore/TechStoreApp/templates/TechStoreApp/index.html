@@ -1,0 +1,27 @@
+{% extends 'TechStoreApp/base.html' %}
+{% load static %}
+{% block page_title %}TechStore{% endblock %}
+{% block page_content %}
+<ul>
+    <li>Lasha</li>
+    <li>Mirian</li>
+</ul>
+
+<input type="text" id="inp">
+<input type="button" id="btn" value="Go">
+
+<div id="container">
+    {{username}}
+    {% if password %}
+    *******
+    {% endif %}
+</div>
+
+<form method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+</form>
+
+{% endblock %}
+

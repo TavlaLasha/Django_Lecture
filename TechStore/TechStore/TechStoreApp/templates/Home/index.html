@@ -1,4 +1,4 @@
-{% extends 'TechStoreApp/base.html' %}
+{% extends 'base.html' %}
 {% load static %}
 {% block page_title %}TechStore{% endblock %}
 {% block page_content %}
@@ -12,6 +12,7 @@
 
 <div id="container">
     {{username}}
+    {{password}}
     {% if password %}
     *******
     {% endif %}

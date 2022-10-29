@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.views.decorators.csrf import csrf_exempt
+
 from .forms import TestForm
+
 
 def index(request):
     form = TestForm(request.POST or None)
@@ -17,7 +20,9 @@ def index(request):
             'password': password
         }
 
-    return render(request, 'TechStoreApp/index.html', context)
+    return render(request, 'Home/index.html', context)
 
+
+@csrf_exempt
 def hello(request):
     return HttpResponse("Hello World!")

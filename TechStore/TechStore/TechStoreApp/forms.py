@@ -2,16 +2,17 @@ from django import forms
 
 
 class TestForm(forms.Form):
-    username = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Username'}))
-    password = forms.CharField(required=False, widget=forms.PasswordInput(attrs={'placeholder': 'Password'}))
+    username = forms.CharField(required=False, widget=forms.TextInput(attrs={'placeholder': 'Input Username'}))
+    age = forms.CharField(required=False, widget=forms.NumberInput(attrs={'placeholder': 'Input Age'}))
+
 
     def clean(self, *args, **kwargs):
         username = self.cleaned_data.get('username')
-        password = self.cleaned_data.get('password')
+        age = self.cleaned_data.get('age')
 
         if not username:
             raise forms.ValidationError(('Username is required'), code='invalid')
-        if not password:
-            raise forms.ValidationError(('Password is required'))
+        if not age:
+            raise forms.ValidationError(('Age is required'))
 
         return super(TestForm, self).clean(*args, **kwargs)

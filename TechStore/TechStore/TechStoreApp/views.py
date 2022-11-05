@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
 
+from . import models
 from .forms import TestForm
 
 
@@ -12,12 +13,15 @@ def index(request):
     }
     if form.is_valid():
         username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password')
+        age = form.cleaned_data.get('age')
+
+        test = models.TestModel(name=username, age=age)
+        test.save()
 
         context = {
             'form': form,
             'username': username,
-            'password': password
+            'age': age
         }
 
     return render(request, 'Home/index.html', context)
